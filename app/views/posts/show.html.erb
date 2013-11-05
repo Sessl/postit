@@ -7,4 +7,7 @@
 <p>
   <%=  @post.description %>
 </p>
+<li>
+    <%= link_to 'Edit Post', edit_post_path %>  <!-- do not use the string '/post/new' instead always use named route -->
+  </li>
 <hr/>
