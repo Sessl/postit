@@ -1,5 +1,5 @@
 <p>
-	<%= render @post.categories %>
+  <%= render @post.categories %>
 </p>
 
 <%= render 'shared/content_title', title: @post.title %>
@@ -7,7 +7,12 @@
 <p>
   <%=  @post.description %>
 </p>
+
+<p>
+  <%= render 'comments/form' %>
+</p>
+  
 <li>
-    <%= link_to 'Edit Post', edit_post_path %>  <!-- do not use the string '/post/new' instead always use named route -->
+    <%= link_to 'Edit Post', edit_post_path(@post) %>  <!-- do not use the string '/post/new' instead always use named route -->
   </li>
 <hr/>
