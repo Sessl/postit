@@ -1,3 +1,9 @@
+<!-- repositioning the Edit Post link to be consistent with Chris' app -->
+
+<p class='pull-right'>
+  <%= link_to 'Edit Post', edit_post_path(@post) %>
+</p>
+
 <p>
   <%= render @post.categories %>
 </p>
@@ -12,7 +18,3 @@
   <%= render 'comments/form' %>
 </p>
   
-<li>
-    <%= link_to 'Edit Post', edit_post_path(@post) %>  <!-- do not use the string '/post/new' instead always use named route -->
-  </li>
-<hr/>
