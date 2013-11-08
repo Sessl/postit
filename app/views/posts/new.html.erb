@@ -1,7 +1,10 @@
-<h4> Creating a new Post </h4>
+<!--<h4> Create a new Post </h4> -->
+<!-- Using content_title helper to show the title: of new -->
+<%= render 'shared/content_title', title: 'Create a new post' %>
 
-<h4>Rails model-backed form helpers</h4>
+<!--<h4>Rails model-backed form helpers</h4> -->
 
 <%= render 'shared/errors', var: @post %>
-
+<div class='well'>
 <%= render 'form' %>
+</div>

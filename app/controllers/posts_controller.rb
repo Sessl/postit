@@ -9,13 +9,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-
+    @post.creator = User.first #Hardcoding user id since longin/logout is not set up as yet.
     if @post.save
       flash[:notice] = "Your post was created."
       redirect_to posts_path
@@ -32,9 +31,10 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
+
     if @post.update(post_params)
       flash[:notice] = "Your post was updated."
-      redirect_to post_path
+      redirect_to post_path                    
     else
       render 'edit'
     end
@@ -44,6 +44,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit!
+    params.require(:post).permit(:title, :url, :description)
   end
 end
