@@ -1,0 +1,5 @@
+<%= render 'shared/content_title', title: "Showing Category: #{@category.name}" %>
+
+<% @category.posts.each do |obj| %>
+  <%= render 'posts/post', obj: obj %>
+  <% end %>

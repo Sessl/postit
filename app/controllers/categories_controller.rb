@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
 
-  def index
-    @category = Category.all
-  end
+ # def index
+ #   @category = Category.all
+ # end
 
   def show
     @category = Category.find(params[:id])
@@ -24,17 +24,17 @@ class CategoriesController < ApplicationController
       
   end
 
-  def edit
-  end
+ # def edit
+ # end
 
-  def update
-  end
+ # def update
+ # end
 
 
   private
 
   def category_params
-    params.require(:category).permit!
+    params.require(:category).permit(:name)
   end
 
 end
