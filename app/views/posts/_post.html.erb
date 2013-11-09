@@ -2,11 +2,11 @@
 <div class='row'>
   <div class='span8 well'>
     <%= render obj.categories %>
-    <h4><%= link_to obj.title, obj.url %></h4>
+    <h4><%= link_to obj.title, fix_url(obj.url) %></h4>
     <p><%= obj.description %></p>
       <span class='quiet'> posted by</span>
       <%= obj.creator.username %>
-      <small> at <%= obj.created_at %></small>
+      <small> at <%= display_datetime(obj.created_at) %></small>
     </p>
     <small>
       <span>

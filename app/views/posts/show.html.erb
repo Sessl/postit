@@ -18,3 +18,15 @@
   <%= render 'comments/form' %>
 </p>
   
+  <h5>Comments:</h5>
+
+  <% @post.comments.each do |comment| %>
+    <% unless comment.body.nil? %>
+    <div class= "well span8" %>
+    	<em>"<%= comment.body %></em>
+    	<br/>
+    	<span class='quiet'>by </span><%= comment.creator.username unless comment.creator.nil? %>
+    	<small> at <%= display_datetime(comment.created_at) unless comment.created_at.nil? %></small>
+    </div>
+    <% end %>
+  <% end %>

@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
     def create
         
         @post = Post.find(params[:post_id])
-        @comment = @post.comments.create(comments_params)
+        @comment = @post.comments.build(comments_params)
 
         if @comment.save
           flash[:notice]= "Your comment was created"
           redirect_to post_path(@post)
         else
-          #@post.comments.reload
+          @post.comments.reload
           render 'posts/show'
         end
           
@@ -19,6 +19,6 @@ class CommentsController < ApplicationController
     private
 
     def comments_params
-        params.require(:comment).permit!
+        params.require(:comment).permit(:body)
     end
 end
