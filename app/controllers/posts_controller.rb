@@ -1,10 +1,14 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update] # 1. before_action is used to set up instance variables we need in the actions. The parameters ensure that set_post only applies to those actions.
+  # if we don't specify set_post will execute before index and we get an error.
+  # 2. It can also be used in redirect. To implement conditions to control actions when redirecting.
+
   def index
      @posts = Post.all
   end
 
   def show
-    @post= Post.find(params[:id])
+    #@post= Post.find(params[:id]) intead using before action set_post
     @comment = @post.comments.build
   end
 
@@ -24,11 +28,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+   # @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
 
 
     if @post.update(post_params)
@@ -44,5 +48,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :url, :description)
+  end
+
+  def set_post
+    @post= Post.find(params[:id])
   end
 end
