@@ -3,6 +3,10 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    def show
+        @user = current_user
+    end
+
     def create
         @user = User.new(user_params)
 
@@ -15,6 +19,7 @@ class UsersController < ApplicationController
     end
 
     def edit
+        @user = current_user
 
     end
 

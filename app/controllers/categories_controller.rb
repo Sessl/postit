@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-
+before_action :require_user, except: [:show]
  # def index
  #   @category = Category.all
  # end

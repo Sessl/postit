@@ -12,17 +12,21 @@
 
 <p>
   <%=  @post.description %>
+  <hr/>
 </p>
 
-<p>
-  <%= render 'comments/form' %>
-</p>
-  
+<% if logged_in? %>
+  <p>
+    <%= render 'comments/form' %>
+  </p>
+<% end %>
+
+
   <h5>Comments:</h5>
 
   <% @post.comments.each do |comment| %>
     <% unless comment.body.nil? %>
-    <div class= "well span8" %>
+    <div class= "well span8" >
     	<em>"<%= comment.body %></em>
     	<br/>
     	<span class='quiet'>by </span><%= comment.creator.username unless comment.creator.nil? %>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update] # 1. before_action is used to set up instance variables we need in the actions. The parameters ensure that set_post only applies to those actions.
   # if we don't specify set_post will execute before index and we get an error.
+  before_action :require_user, except: [:index, :show] #:require_user is defined in application_controller
   # 2. It can also be used in redirect. To implement conditions to control actions when redirecting.
 
   def index
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.creator = User.first #Hardcoding user id since longin/logout is not set up as yet.
+    @post.creator = current_user   #User.first Hardcoding user id since longin/logout is not set up as yet.
     if @post.save
       flash[:notice] = "Your post was created."
       redirect_to posts_path
