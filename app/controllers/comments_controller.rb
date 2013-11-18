@@ -5,7 +5,7 @@ before_action :require_user
         
         @post = Post.find(params[:post_id])
         @comment = @post.comments.build(comments_params)
-        @user = current_user
+        @comment.creator = current_user
 
         if @comment.save
           flash[:notice]= "Your comment was created"
@@ -16,6 +16,17 @@ before_action :require_user
         end
           
     end
+
+    def vote
+      @comment = Comment.find(params[:id])
+      @vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
+    if @vote.valid?
+      flash[:notice] = "Your vote was counted"
+    else
+      flash[:error] = "Your vote was not counted"
+    end
+    redirect_to :back
+  end
 
     private
 

@@ -15,10 +15,19 @@ PostitTemplate::Application.routes.draw do
   #Instructor also recommends that resources are retained for models because CRUD actions are being performed with a model. Sessions is not a model.
   #Therefore one off routes are used for non model backed entities.
   resources :posts, except: [:destroy] do
-  	resources :comments, except: [:destroy]
+  	resources :comments, except: [:destroy] do
+      member do
+        post :vote
+      end
+    end
+     
+    member do
+      post :vote
+    end
   end
   resources :categories, only: [:new, :create, :show]  #restricted categories to new, create and show from except: [:destroy]
   resources :users, only: [:show, :create, :edit, :update]  # limiting to only :create action since on line 4 the register_path is created for users#new action
-  
 
 end
+
+

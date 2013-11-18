@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update] # 1. before_action is used to set up instance variables we need in the actions. The parameters ensure that set_post only applies to those actions.
+  before_action :set_post, only: [:show, :edit, :update, :vote] # 1. before_action is used to set up instance variables we need in the actions. The parameters ensure that set_post only applies to those actions.
   # if we don't specify set_post will execute before index and we get an error.
   before_action :require_user, except: [:index, :show] #:require_user is defined in application_controller
   # 2. It can also be used in redirect. To implement conditions to control actions when redirecting.
 
   def index
-     @posts = Post.all
+     @posts = Post.last(10).sort_by{|x| x.total_votes}.reverse
   end
 
   def show
@@ -44,6 +44,16 @@ class PostsController < ApplicationController
       render 'edit'
     end
 
+  end
+
+  def vote
+    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+    if @vote.valid?
+      flash[:notice] = "Your vote was counted"
+    else
+      flash[:error] = "Your vote was not counted"
+    end
+    redirect_to :back
   end
 
   private
