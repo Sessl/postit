@@ -3,5 +3,26 @@
 <div class="well" >
   <b>Username:   </b><%= @current_user.username %>
   <br/>
+</div>
 
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#posts_tab" data-toggle="tab"><%= "Posts (#{@user_posts.size})"%></a>
+  </li>
+  <li><a href="#comments_tab" data-toggle="tab"><%= "Comments (#{@user_comments.size})" %></a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="posts_tab" class="tab-pane active">
+   <% @user_posts.each do |obj| %>
+    <%= render 'posts/post', obj: obj %>
+  <% end %>
+  </div>
+
+  <div id="comments_tab" class="tab-pane">
+    <% @user_comments.each do |comment| %>
+    <% @post = comment.post %>
+    <%= render 'comments/comment', comment: comment %> 
+    <% end %>
+  </div>
 </div>

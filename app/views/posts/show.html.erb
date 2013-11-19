@@ -25,30 +25,5 @@
   <h5>Comments:</h5>
 
   <% @post.comments.each do |comment| %>
-  <div class= 'row' >
-  <% unless comment.body.nil? %>
-  <div class='span0 well text-center'>
-    <%if logged_in? %>
-    <%= link_to vote_post_comment_path(@post, comment,vote: true), method: 'post' do %>
-      <i class='icon-arrow-up'></i>
-    <% end %>
-    <% end %>
-    <br/>
-    <%= comment.total_votes %>
-    <br/>
-    <% if logged_in? %>
-    <%= link_to vote_post_comment_path(@post, comment, vote: false), method: 'post' do %>
-      <i class='icon-arrow-down'></i>
-      <% end %>
-      <% end %>
-  </div>
-    
-    <div class= "well span8" >
-    	<em>"<%= comment.body %></em>
-    	<br/>
-    	<span class='quiet'>by </span><%= comment.creator.username unless comment.creator.nil? %>
-    	<small> at <%= display_datetime(comment.created_at) unless comment.created_at.nil? %></small>
-    </div>
-    <% end %>
-  </div>
+    <%= render 'comments/comment', comment: comment %> 
   <% end %>
