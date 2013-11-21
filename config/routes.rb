@@ -9,6 +9,7 @@ PostitTemplate::Application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  
 
   #instead of creating the routes explicitly as in lines 9,10 & 11 resources session, only: [:new, :create, :destroy] can be used.
   #However method above also prevents the standard named routes being created ie. new_sessions_path etc.

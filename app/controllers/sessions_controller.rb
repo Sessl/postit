@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id #don't add the user object in the session because it's cookie backed will grow and result in session cookie overflow error. So only save user.id
       flash[:notice] = "You are logged in!"
       redirect_to root_path
+      
     else
       flash[:error] = "There's something wrong with your username or password"
       redirect_to register_path
