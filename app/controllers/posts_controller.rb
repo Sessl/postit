@@ -48,12 +48,16 @@ class PostsController < ApplicationController
 
   def vote
     @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
-    if @vote.valid?
-      flash[:notice] = "Your vote was counted"
-    else
-      flash[:error] = "Your vote was not counted"
+    #if @vote.valid?
+     # flash[:notice] = "Your vote was counted"
+    #else
+     # flash[:error] = "Your vote was not counted"
+    #end
+    #redirect_to :back #with Ajax requests you don't want to rediret so we use respond_to block
+    respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
     end
-    redirect_to :back
   end
 
   private

@@ -20,12 +20,17 @@ before_action :require_user
     def vote
       @comment = Comment.find(params[:id])
       @vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
-    if @vote.valid?
-      flash[:notice] = "Your vote was counted"
-    else
-      flash[:error] = "Your vote was not counted"
+    #if @vote.valid?
+     # flash[:notice] = "Your vote was counted"
+    #else
+    #  flash[:error] = "Your vote was not counted"
+    #end
+   # redirect_to :back
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
     end
-    redirect_to :back
+  
   end
 
     private
