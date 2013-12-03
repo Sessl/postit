@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = current_user
+        @user = User.find_by(slug: current_user)
         @user_posts = Post.all.where(creator: current_user)
         @user_comments = Comment.all.where(creator: current_user)
     end
