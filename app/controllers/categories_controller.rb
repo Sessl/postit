@@ -5,7 +5,7 @@ before_action :require_user, except: [:show]
  # end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by(slug: params[:id])
   end
 
   def new
