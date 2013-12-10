@@ -4,6 +4,10 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show] #:require_user is defined in application_controller
   # 2. It can also be used in redirect. To implement conditions to control actions when redirecting.
 
+  before_action :require_creator_or_admin, only: [:edit]
+  
+
+
   def index
      @posts = Post.last(10).sort_by{|x| x.total_votes}.reverse
   end
@@ -68,5 +72,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post= Post.find_by(slug: params[:id])
+  end
+
+  def require_creator_or_admin
+    access_denied unless current_user.admin? || (current_user == @post.creator)
   end
 end
