@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
     include VoteableSesslDec
+    include Sluggable
 
 	belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
 	has_many :comments
@@ -10,8 +11,9 @@ class Post < ActiveRecord::Base
     validates :title, presence: true, length: {minimum: 5}
     validates :url, presence: true, uniqueness: true
     validates :description, presence: true
-
-    before_save :generate_slug
+    
+    sluggable_column :title
+    #before_save :generate_slug
 
     # moving the methods below to Voteable module under lib
     #def total_votes
@@ -26,11 +28,11 @@ class Post < ActiveRecord::Base
     	#self.votes.where(vote: false).size
     #end
 
-    def generate_slug
-        self.slug = self.title.gsub(' ', '-').downcase
-    end
+    #def generate_slug
+    #    self.slug = self.title.gsub(' ', '-').downcase
+    #end
 
-    def to_param
-        self.slug
-    end
+    #def to_param
+    #    self.slug
+    #end
 end
