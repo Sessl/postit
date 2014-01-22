@@ -9,6 +9,9 @@ class PostsController < ApplicationController
 
 
   def index
+     if session[:user_id] == nil
+      flash.now[:just_arrived] = 1
+     end
      @posts = Post.last(10).sort_by{|x| x.total_votes}.reverse
   end
 

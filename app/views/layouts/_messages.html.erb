@@ -4,5 +4,68 @@
       <a class="close" data-dismiss="alert">&#215;</a>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     </div>
+    <% else %>
+    <div class="row">
+    <div class="span12">
+    	<div class="alert alert-block">
+    		<button type="button" class="close" data-dismiss="alert">&times;</button>
+    		<h3> Ayubowan!(Welcome)</h3>
+    		This is the application I built during the 2nd course at "<a href="http://www.gotealeaf.com">Tealeaf Academy.</a> This is a Reddit-like application, with all features built from scratch. No external libraries or gems were used.
+    		<div class="row">
+    			
+    			<div class="span5">
+    				<h5>Features:</h5>
+    				<ul>
+    					<li>Built with Ruby 1.9.3 and Rails 4</li>
+                        <li>Create and edit posts</li>
+                        <li>Comment and vote on posts</li>
+                        <li>Authentication</li>
+                        <li>Tracks who created every comment, vote and post</li>
+                        <li>Organize posts by category</li>
+                        <li>Categories can only be created by Admin</li>
+                        <li>Uses roles to allow admins to edit all posts</li>
+                        <li>Uses ajax to vote</li>
+                        <li>Slugs as URLs</li>
+                        <li>Display time based on user specified time zone</li>
+                        <li>Deployed to Heroku</li>
+                        <li>Uses gem to extract common logic</li>
+    				</ul>
+    			</div>
+    			<div class="span5">
+    				<h5>What I learnt:</h5>
+                    <ul>
+                        <li>Basics of relational databases</li>
+                        <li>Basic database associations: 1:M and M:M</li>
+                        <li>ActiveRecord</li>
+                        <li>Resourceful routing</li>
+                        <li>REST</li>
+                        <li>MVC - models,views and controllers</li>
+                        <li>Request/response processing</li>
+                        <li>Partials</li>
+                        <li>Helpers</li>
+                        <li>Filters</li>
+                        <li>Rails Forms</li>
+                        <li>Validations</li>
+                        <li>Strong Parameters</li>
+                        <li>Callbacks</li>
+                        <li>Authentication from scratch</li>
+                        <li>Time zones</li>
+                        <li>Simple roles</li>
+                        <li>Deployment</li>
+                        <li>Polymorphic associations</li>
+                        <li>Ajax, the Rails way</li>
+                        <li>Pretty URLs</li>
+                        <li>Building APIs</li>
+                        <li>Created and published my first rubygem</li>
+                    </ul>
+    			</div>
+    		</div>
+        </br>
+            <h3>Suchitra Edussuriya-Essl</h3>
+    	</div>
+    </div>
+</div>
   <% end %>
 <% end %>
+
+
